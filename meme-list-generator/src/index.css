@@ -1,0 +1,18 @@
+body{
+    margin: 0;
+    
+}
+
+.header-container{
+    display: flex;
+    background: linear-gradient(90deg, #672280 1.18%, #A626D3 100%);
+    align-items: center;
+    height: 65px;
+    color: white;
+    font-family: 'Karla', sans-serif;
+}
+
+.header-photo{
+    height: 40px;
+    margin-left: 15px;
+}
