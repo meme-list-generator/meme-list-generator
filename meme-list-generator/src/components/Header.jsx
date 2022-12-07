@@ -9,8 +9,8 @@ export default function Header () {
                 className="header-photo"
             />
 
-        <h1>Meme Generator</h1>
-        <h3>React Course - Project 3</h3>
+            <h1 className="header-h1">Meme Generator</h1>
+            <h3 className="header-h3">React Course - Project 3</h3>
 
         </div>
     )
