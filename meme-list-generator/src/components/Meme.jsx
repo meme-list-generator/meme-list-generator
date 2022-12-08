@@ -11,7 +11,7 @@ export default function Meme() {
     const [memeImages, setMemeImages] = useState([])
     const [count, setCount] = useState(0)
     const [arrOfMemes, setArrOfMemes] = useState([])
-
+    
     function getMemeImages() {
         axios.get("https://api.imgflip.com/get_memes")
             .then(res => {
@@ -82,4 +82,5 @@ export default function Meme() {
                 <h2 className="meme-text bottom">{meme.bottomText}</h2>
             </div>
         </main>
-
+    )
+}
