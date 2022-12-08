@@ -71,16 +71,25 @@ export default function Meme() {
                     className="form-button"
                     onClick={countMemes}
                 >
-                    Get a new meme image 🖼
+                    Next image 🖼
                 </button>
-                <button onClick={testing}>TEST</button>
-                <button onClick={addMemeToList}>Add to Collection</button>
+                {/* <button onClick={testing}>TEST</button> */}
+                <button 
+                    className="form-button" 
+                    onClick={addMemeToList}
+                >
+                    Add this meme to your collection
+                </button>
             </div>
             <div className="meme">
-                <img src={memeImages?.data?.memes[count].url} className="meme-image" />
+                <img 
+                    src={memeImages?.data?.memes[count].url} 
+                    className="meme-image" 
+                />
                 <h2 className="meme-text top">{meme.topText}</h2>
                 <h2 className="meme-text bottom">{meme.bottomText}</h2>
             </div>
+            <div className="meme-list"></div>
         </main>
     )
 }
