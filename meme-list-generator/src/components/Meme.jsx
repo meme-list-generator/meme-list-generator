@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react"
 import axios from "axios"
 
@@ -81,5 +82,4 @@ export default function Meme() {
                 <h2 className="meme-text bottom">{meme.bottomText}</h2>
             </div>
         </main>
-    )
-}
+
