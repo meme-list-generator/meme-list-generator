@@ -1,12 +1,13 @@
 
 import { useState, useEffect } from "react"
 import axios from "axios"
+import MemeList from "./MemeList"
 
 export default function Meme() {
     const [meme, setMeme] = useState({
         topText: "",
         bottomText: "",
-        url: "http://i.imgflip.com/1bij.jpg"
+        url: ""
     })
     const [memeImages, setMemeImages] = useState([])
     const [count, setCount] = useState(0)
@@ -48,6 +49,8 @@ export default function Meme() {
         console.log(arrOfMemes)
     }
 
+    const memeListElement = arrOfMemes.map(data => <MemeList data={data}/>)
+    
     return (
         <main>
             <div className="form">
@@ -73,7 +76,7 @@ export default function Meme() {
                 >
                     Next image 🖼
                 </button>
-                {/* <button onClick={testing}>TEST</button> */}
+                <button onClick={testing}>TEST</button>
                 <button 
                     className="form-button" 
                     onClick={addMemeToList}
@@ -89,7 +92,9 @@ export default function Meme() {
                 <h2 className="meme-text top">{meme.topText}</h2>
                 <h2 className="meme-text bottom">{meme.bottomText}</h2>
             </div>
-            <div className="meme-list"></div>
+            <div className="meme-list">
+                {memeListElement}
+            </div>
         </main>
     )
 }
