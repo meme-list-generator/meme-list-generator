@@ -1,13 +1,15 @@
 import { useState } from "react";
 
-export default function MemeLIst(props){
-    return(
-        <div>
-            <img src={props.info.url}/>
-            <h2>{props.info.topText}</h2>
-            <h2>{props.info.bottomText}</h2>
-            <button>Edit</button>
-            <button>Delete</button>
+export default function MemeList(props) {
+
+    return (
+        <div className="meme">
+            <img
+                src={props.info.url}
+                className="meme-image"
+            />
+            <h2 className="meme-text top">{props.info.topText}</h2>
+            <h2 className="meme-text bottom">{props.info.bottomText}</h2>
         </div>
     )
 }

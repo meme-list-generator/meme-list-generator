@@ -1,7 +1,4 @@
-import MemeLIst from "./MemeList"
 import React, { useState, useEffect } from "react"
-
-import { useState, useEffect } from "react"
 import axios from "axios"
 import MemeList from "./MemeList"
 
@@ -9,11 +6,17 @@ export default function Meme() {
     const [meme, setMeme] = useState({
         topText: "",
         bottomText: "",
-        url: ""
+        url: "https://i.imgflip.com/345v97.jpg"
     })
     const [memeImages, setMemeImages] = useState([])
     const [count, setCount] = useState(0)
     const [arrOfMemes, setArrOfMemes] = useState([])
+    const [memeList, setMemeList] = useState([])
+
+    React.useEffect(() => {
+        axios.get("https://api.imgflip.com/get_memes")
+            .then(res => setArrOfMemes(res.data.data.memes))
+    }, [])
     const [memeList, setMemeList] = useState([])
 
     React.useEffect(() => {
@@ -28,9 +31,15 @@ export default function Meme() {
             ...prevMeme,
             url: imgUrl
         }))
+        const randomNumber = Math.floor(Math.random() * arrOfMemes.length)
+        const imgUrl = arrOfMemes[randomNumber].url
+        setMeme(prevMeme => ({
+            ...prevMeme,
+            url: imgUrl
+        }))
     }
     
-    console.log(arrOfMemes.length)
+    console.log(meme)
 
     // useEffect(() => {
     //     getMemeImages()
@@ -50,23 +59,35 @@ export default function Meme() {
     // }
 
    
+
+    // function countMemes() {
+    //     setCount(prevCount => prevCount + 1)
+        
+    // }
+
+   
     function addMemeToList() {
-        setMemeList(prevState => [...prevState, meme])
+        return(
+            setMemeList(prevState => [...prevState, meme])
+        )
+        
     }
+    
 
     const savedMemes = memeList.map(info =>(
-        <MemeLIst
-            key = {info.url} 
+        <MemeList
             info = {info}
+            key = {info.url}
+
         />
     ))
 
 
-    function testing() {
-        console.log(arrOfMemes)
-    }
+    // function testing() {
+    //     console.log(arrOfMemes)
+    // }
 
-    const memeListElement = arrOfMemes.map(data => <MemeList data={data}/>)
+    // const memeListElement = arrOfMemes.map(data => <MemeList data={data}/>)
     
     return (
         <main>
@@ -90,9 +111,11 @@ export default function Meme() {
                 <button
                     className="form-button"
                     onClick={getMemeImages}
+                    onClick={getMemeImages}
                 >
                     Next image 🖼
                 </button>
+                {/* {<button onClick={testing}>TEST</button>} */}
                 {/* {<button onClick={testing}>TEST</button>} */}
                 <button 
                     className="form-button" 
@@ -104,12 +127,13 @@ export default function Meme() {
             <div className="meme">
                 <img 
                     src={meme.url} 
+                    src={meme.url} 
                     className="meme-image" 
                 />
                 <h2 className="meme-text top">{meme.topText}</h2>
                 <h2 className="meme-text bottom">{meme.bottomText}</h2>
             </div>
-            <div className="meme-list">{savedMemes}</div>
+            {<div className="meme-list">{savedMemes}</div>}
         </main>
     )
 }
