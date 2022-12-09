@@ -1,12 +1,15 @@
 import MemeLIst from "./MemeList"
 import React, { useState, useEffect } from "react"
 
+import { useState, useEffect } from "react"
+import axios from "axios"
+import MemeList from "./MemeList"
 
 export default function Meme() {
     const [meme, setMeme] = useState({
         topText: "",
         bottomText: "",
-        url: "http://i.imgflip.com/1bij.jpg"
+        url: ""
     })
     const [memeImages, setMemeImages] = useState([])
     const [count, setCount] = useState(0)
@@ -63,6 +66,8 @@ export default function Meme() {
         console.log(arrOfMemes)
     }
 
+    const memeListElement = arrOfMemes.map(data => <MemeList data={data}/>)
+    
     return (
         <main>
             <div className="form">
