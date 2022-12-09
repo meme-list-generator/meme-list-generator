@@ -17,8 +17,20 @@ export default function Meme() {
         axios.get("https://api.imgflip.com/get_memes")
             .then(res => setArrOfMemes(res.data.data.memes))
     }, [])
+    const [memeList, setMemeList] = useState([])
+
+    React.useEffect(() => {
+        axios.get("https://api.imgflip.com/get_memes")
+            .then(res => setArrOfMemes(res.data.data.memes))
+    }, [])
     
     function getMemeImages() {
+        const randomNumber = Math.floor(Math.random() * arrOfMemes.length)
+        const imgUrl = arrOfMemes[randomNumber].url
+        setMeme(prevMeme => ({
+            ...prevMeme,
+            url: imgUrl
+        }))
         const randomNumber = Math.floor(Math.random() * arrOfMemes.length)
         const imgUrl = arrOfMemes[randomNumber].url
         setMeme(prevMeme => ({
@@ -40,6 +52,13 @@ export default function Meme() {
             [name]: value
         }))
     }
+
+    // function countMemes() {
+    //     setCount(prevCount => prevCount + 1)
+        
+    // }
+
+   
 
     // function countMemes() {
     //     setCount(prevCount => prevCount + 1)
@@ -92,9 +111,11 @@ export default function Meme() {
                 <button
                     className="form-button"
                     onClick={getMemeImages}
+                    onClick={getMemeImages}
                 >
                     Next image 🖼
                 </button>
+                {/* {<button onClick={testing}>TEST</button>} */}
                 {/* {<button onClick={testing}>TEST</button>} */}
                 <button 
                     className="form-button" 
@@ -105,6 +126,7 @@ export default function Meme() {
             </div>
             <div className="meme">
                 <img 
+                    src={meme.url} 
                     src={meme.url} 
                     className="meme-image" 
                 />
