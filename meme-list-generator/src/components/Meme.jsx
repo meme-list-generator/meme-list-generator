@@ -48,8 +48,6 @@ export default function Meme() {
 
     }
 
-
-
     // useEffect(() => {
     //     getMemeImages()
     // }, [count])
@@ -61,8 +59,6 @@ export default function Meme() {
             [name]: value
         }))
     }
-
-
 
     // function countMemes() {
     //     setCount(prevCount => prevCount + 1)
@@ -85,17 +81,24 @@ export default function Meme() {
 
     }
 
-
-
     const deleteBtn = id => {
         setMemeList(prevMemeList => {
             return prevMemeList.filter(meme => meme.id !== id)
         })
     }
     
-    function editHandler(){
+    function updateMeme(id, editField){
         setMemeList(prevMemeList => {
-            prevMemeList.find(item => item.id === meme.id)
+            return prevMemeList.map(item => {
+                if(item.id === id){
+                    return {
+                        ...item,
+                        ...editField
+
+                    }
+                } 
+                return item 
+            })
         })
     }
 
@@ -104,7 +107,7 @@ export default function Meme() {
             info={info}
             key={info.id}
             delete = {deleteBtn}
-            
+            edit = {updateMeme}
         />
     ))
 
@@ -115,8 +118,6 @@ export default function Meme() {
     // }
 
     // const memeListElement = arrOfMemes.map(data => <MemeList data={data}/>)
-
-
 
 
     return (

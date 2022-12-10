@@ -2,15 +2,34 @@ import { useState } from "react";
 
 export default function MemeList(props) {
 
-    const [edit, setEdit]  = useState(true)
+    const [isEditMode, setEdit]  = useState(false)
+    
     function editHandler(){
         setEdit(prevEdit => !prevEdit)
     }
+
+    function handleSave(){
+        setEdit(false)
+        props.edit(props.info.id, editMeme)
+    }
     
+    const [editMeme, setEditMeme] = useState({
+        topText: props.info.topText,
+        bottomText: props.info.bottomText
+    })
+
+    function memeInputHandler(e){
+        const {name, value} = e.target
+        setEditMeme(prevEditMeme => ({
+            ...prevEditMeme,
+            [name]: value
+        }))
+    }
 
     return (
         
         <div className="meme">
+            
             <img
                 src={props.info.url}
                 className="meme-image"
@@ -18,28 +37,34 @@ export default function MemeList(props) {
             <h2 className="meme-text top">{props.info.topText}</h2>
             <h2 className="meme-text bottom">{props.info.bottomText}</h2>
 
-            {!edit && 
+            {isEditMode && 
                 <input 
-                    placeholder={props.info.topText}
+                    value={editMeme.topText}
                     type="text"
+                    name="topText"
+                    
+                    onChange={memeInputHandler}
                 />
             }
 
-            {!edit && 
+            {isEditMode && 
                 <input 
-                    placeholder={props.info.bottomText}
+                    value={editMeme.bottomText}
                     type="text"
+                    name="bottomText"
+                    
+                    onChange={memeInputHandler}
                 />
             }
 
-            {edit && 
+            {!isEditMode && 
                 <button
                     onClick={editHandler}
                 >Edit</button>}
 
-            {!edit &&
+            {isEditMode &&
                 <button
-                    onClick={editHandler}
+                    onClick={handleSave}
                 >Save</button>}
                 
 
