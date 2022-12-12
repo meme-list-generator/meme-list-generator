@@ -13,16 +13,15 @@ export default function Meme() {
         bottomText: "",
         url: "",
         id: "",
-        
     })
 
-    // const [memeImages, setMemeImages] = useState([])
+
     const [arrOfMemes, setArrOfMemes] = useState([])
     const [memeList, setMemeList] = useState([])
 
 
 
-    React.useEffect(() => {
+    useEffect(() => {
         axios.get("https://api.imgflip.com/get_memes")
             .then(res => {
                 setArrOfMemes(res.data.data.memes)
@@ -32,7 +31,6 @@ export default function Meme() {
                     id: res.data.data.memes[0].id
                 }))
             })
-
     }, [])
 
     function getMemeImages() {
@@ -48,10 +46,6 @@ export default function Meme() {
 
     }
 
-    // useEffect(() => {
-    //     getMemeImages()
-    // }, [count])
-
     function handleChange(e) {
         const { name, value } = e.target
         setMeme(prevMeme => ({
@@ -59,12 +53,6 @@ export default function Meme() {
             [name]: value
         }))
     }
-
-    // function countMemes() {
-    //     setCount(prevCount => prevCount + 1)
-
-    // }
-
 
     function addMemeToList() {
 
@@ -75,10 +63,7 @@ export default function Meme() {
             } else {
                 return [...prevState, meme]
             }
-
         })
-
-
     }
 
     const deleteBtn = id => {
@@ -94,7 +79,6 @@ export default function Meme() {
                     return {
                         ...item,
                         ...editField
-
                     }
                 } 
                 return item 
@@ -111,18 +95,9 @@ export default function Meme() {
         />
     ))
 
-
-
-    // function testing() {
-    //     console.log(arrOfMemes)
-    // }
-
-    // const memeListElement = arrOfMemes.map(data => <MemeList data={data}/>)
-
-
     return (
         <main>
-            <div className="form">
+            <div className="form-meme">
                 <input
                     type="text"
                     placeholder="Top Text"
@@ -145,12 +120,9 @@ export default function Meme() {
                 >
                     Next image 🖼
                 </button>
-                {/* {<button onClick={testing}>TEST</button>} */}
-                {/* {<button onClick={testing}>TEST</button>} */}
                 <button
                     className="form-button"
                     onClick={addMemeToList}
-
                 >
                     Add this meme to your collection
                 </button>

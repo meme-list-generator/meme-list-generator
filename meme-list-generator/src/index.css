@@ -30,7 +30,7 @@ body{
     margin-right: 20px;
 }
 
-.form {
+.form-meme {
     display: grid;
     grid-template: 40px 40px / 1fr 1fr;
     gap: 17px;
@@ -53,9 +53,16 @@ body{
     cursor: pointer;
 }
 
+.meme-container {
+    position: relative;
+    width: 100%;
+}
+
 .meme {
     position: relative;
     margin: 0 25%;
+    padding: 5px;
+    width: auto;
 }
 
 .meme-image {
@@ -67,7 +74,7 @@ body{
     position: absolute;
     width: 100%;
     text-align: center;
-    margin: 15px 0;
+    margin: 0;
     padding: 0 5px;
     font-family: impact, sans-serif;
     font-size: 2em;
@@ -87,9 +94,27 @@ body{
 }
 
 .bottom {
+    padding: 1rem;
     bottom: 0;
 }
 
 .top {
+    padding: 1rem;
     top: 0;
+}
+
+.list-button {
+    width: 100%;
+    height: 35px;
+    margin: 5px;
+    border-radius: 5px;
+    background: linear-gradient(90.41deg, #711F8D 1.14%, #A818DA 100%);
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.edit-field {
+    width: 45%;
+    
 }
