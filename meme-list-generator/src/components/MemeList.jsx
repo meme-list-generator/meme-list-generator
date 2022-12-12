@@ -28,49 +28,57 @@ export default function MemeList(props) {
 
     return (
         
-        <div className="meme">
-            
-            <img
-                src={props.info.url}
-                className="meme-image"
-            />
-            <h2 className="meme-text top">{props.info.topText}</h2>
-            <h2 className="meme-text bottom">{props.info.bottomText}</h2>
-
-            {isEditMode && 
-                <input 
-                    value={editMeme.topText}
-                    type="text"
-                    name="topText"
-                    
-                    onChange={memeInputHandler}
+        <div className="meme-container">
+            <div className="meme"> 
+                <img
+                    src={props.info.url}
+                    className="meme-image"
                 />
-            }
+                <h2 className="meme-text top">{props.info.topText}</h2>
+                <h2 className="meme-text bottom">{props.info.bottomText}</h2>
+            </div>
+            <form className="form-list">
+                {isEditMode && 
+                    <input 
+                        value={editMeme.topText}
+                        type="text"
+                        name="topText"
+                        placeholder="edit top text"
+                        className="edit-field top"
+                        onChange={memeInputHandler}
+                    />
+                }
 
-            {isEditMode && 
-                <input 
-                    value={editMeme.bottomText}
-                    type="text"
-                    name="bottomText"
+                {isEditMode && 
+                    <input 
+                        value={editMeme.bottomText}
+                        type="text"
+                        name="bottomText"
+                        placeholder="edit bottom text"
+                        className="edit-field bottom"
+                        onChange={memeInputHandler}
+                    />
+                }
+
+                {!isEditMode && 
+                    <button
+                        onClick={editHandler}
+                        className="list-button edit"
+                    >Edit</button>
+                }
+
+                {isEditMode &&
+                    <button
+                        onClick={handleSave}
+                        className="list-button save"
+                    >Save</button>
+                }
                     
-                    onChange={memeInputHandler}
-                />
-            }
-
-            {!isEditMode && 
                 <button
-                    onClick={editHandler}
-                >Edit</button>}
-
-            {isEditMode &&
-                <button
-                    onClick={handleSave}
-                >Save</button>}
-                
-
-            <button
-                onClick={() => props.delete(props.info.id)}
-            >Delete</button>
+                    className="list-button delete"
+                    onClick={() => props.delete(props.info.id)}
+                >Delete</button>
+            </form>
         </div>
     )
 }
